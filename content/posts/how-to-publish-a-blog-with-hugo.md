@@ -1,5 +1,5 @@
 +++ 
-draft = true
+draft = false
 date = 2021-07-21T16:11:45+02:00
 title = "How to Publish a Blog with Hugo, Github and Netlify"
 description = ""
@@ -232,14 +232,6 @@ git remote add origin https://github.com/da-ivancho/ivanhernandez.dev.git
 git branch -M main
 git push -u origin main
 ```
-
-## Netlify
-
-### Create an account
-
-### Create a new site
-
-### Change site name
 
 
 
