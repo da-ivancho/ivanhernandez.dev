@@ -1,4 +1,4 @@
-baseURL = "/"
+baseURL = "https://ivanhernandez.netlify.app"
 title = "Ivan Hernandez"
 theme = "hugo-coder"
 languageCode = "en"
@@ -19,6 +19,8 @@ info = ["Software Developer", "Long Life Learner",]
 avatarURL = "images/avatar.png"
 #gravatar = "john.doe@example.com"
 #footerContent = "Enter a text here."
+favicon_32 = "img/favicon-32x32.png"
+favicon_16 = "img/favicon-16x16.png"
 dateFormat = "January 2, 2006"
 hideFooter = false
 hideCredits = false

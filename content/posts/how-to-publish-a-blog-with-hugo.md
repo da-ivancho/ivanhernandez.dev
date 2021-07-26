@@ -1,35 +1,64 @@
 +++ 
 draft = true
 date = 2021-07-21T16:11:45+02:00
-title = "How to Publish a Blog with Hugo and Github"
+title = "How to Publish a Blog with Hugo, Github and Netlify"
 description = ""
 slug = ""
-authors = []
-tags = []
-categories = []
+author = "Ivan Hernandez"
+tags = ['Blog', 'Hugo', 'GitHub', 'Netlify']
+categories = ['Tutorial']
 externalLink = ""
 series = []
 +++
 
-This is my first post in this blog and I will try to document the process I followed to publish this website without having much of a clue of what I was doing.
+This is my first post in this blog and I will try to document the process I followed to publish this website without having much of a clue of what I was doing, so follow these steps at your own risk. 
 
 ## Table of Content
-1. [Install Hugo](#item-1)
-2. [Create the website locally (in my local computer)](#item-2)
-3. [Add a Hugo Theme](#item-3)
-4. [Start Hugo Server](#item-4)
-5. [Initial Theme Configuration](#item-5)
-6. [Initialize Git repository](#item-6)
-7. [Create GitHub repository](#item-7)
+1. [What do we need?](#item-1)
+2. [Install Hugo](#item-2)
+2. [Create the website locally](#item-3)
+3. [Add a Hugo Theme](#item-4)
+4. [Start Hugo Server](#item-5)
+5. [Initial Theme Configuration](#item-6)
+6. [Initialize Git repository](#item-7)
+7. [Create GitHub repository](#item-8)
 
-## How to install Hugo in macOS? {#item-1}
+## What do we need? {#item-1}
+
+1. A Text editor
+2. Homebrew (if you are using MacOS, otherwise a package manager for your OS)
+3. Git + GitHub
+4. Netlify
+
+### Text editor
+
+I am currently using [Visual Studio Code](https://code.visualstudio.com/), but there are plenty of options out there.
+
+### Homebrew
+
+Is a package management software for MacOS that allows you to install software via the command line.
+
+Open a Terminal and install it following the instructions described in their website [Homebrew](https://brew.sh/).
+
+### Git + GitHub
+
+[Git](https://git-scm.com/) is a version control system that allows you to keep track of the changes you made to your projects.
+
+Install git using the command:
+
+```bash
+brew install git
+```
+
+You can open a GitHub account to host the code of your website in https://www.github.com
+
+
+## How to install Hugo in macOS? {#item-2}
 
 ### First, what is Hugo and what it does?
 Just go [here](https://gohugo.io/) and learn about it.
 
-Once you have a certain idea of what it does, the installation is a relatively simple process, once you have [Homebrew](https://brew.sh/) installed in your mac. In case you don´t, follow the link above and install it.
-
-Once you have Hombrew ready, proceed with the following commands to install Hugo.
+Once you have a certain idea of what it does, the installation is relatively simple.
 
 {{< highlight bash >}} brew install hugo {{< /highlight >}}
 
@@ -37,9 +66,9 @@ And to verify that hugo runs correctly
 
 {{< highlight bash >}} hugo version {{< /highlight >}}
 
-## Create the website in your local computer {#item-2}
+## Create the website in your local computer {#item-3}
 
-Make sure you are in the directory where you want your website created. In my example I have a Projects folder inside Documents.
+Make sure you are in the directory where you want your website created. In my example I have a Projects folder inside Documents. So go ahead with the following command:
 
 ```bash
 cd ~/Documents/Projects
@@ -76,14 +105,16 @@ A new folder called ivanhernandez.dev is created and the content looks like this
 
 6 directories, 2 files
 ```
-**Note**: You can install tree to display directories as trees:
+**Note**: In case the command 'tree' doesn't exist in your computer, you can install it to display directories as trees:
 ```bash
 brew install tree
 ```
 
-## Add a Hugo Theme {#item-3}
+## Add a Hugo Theme {#item-4}
 
 After spending some time in http://themes.gohugo.io/ I have decided to start with the hugo-coder theme https://github.com/luizdepra/hugo-coder/
+
+In order to install it, make sure you are inside the root folder of your website as follows:
 
 ```bash
 cd ivanhernandez.dev
@@ -105,9 +136,11 @@ Now the directory ivanhernandez.dev should look like this:
 
 7 directories, 2 files
 ```
-Then I have copied the config.toml configuration from the example site https://github.com/luizdepra/hugo-coder/blob/master/exampleSite/config.toml
+The theme that you have selected should be visible inside the themes folder.
 
-## Start Hugo Server {#item-4}
+## Start Hugo Server {#item-5}
+
+Once the initial configuration of your site is ready, you can start the hugo server, so you can locally display your website.
 
 ```bash
 hugo server -D
@@ -135,21 +168,24 @@ Running in Fast Render Mode. For full rebuilds on change: hugo server --disableF
 Web Server is available at //localhost:1313/ (bind address 127.0.0.1)
 Press Ctrl+C to stop
 ```
+Now open a web browser an type //localhost:1313 and you can see it.
 
-## Initial Theme Configuration {#item-5}
+## Initial Theme Configuration {#item-6}
 
-I will start with the minimun configuration taken from themes/hugo-coder/exampleSite/config.toml by copying it into my website folder ivanhernandez.dev
+I will start with the minimun configuration taken from themes/hugo-coder/exampleSite/config.toml by copying it into my website folder ivanhernandez.dev.
+
+In this file is where you can see all the configuration for your website.
 
 ### Edit config.toml
 
 Most of the settings are self-explanatory, with the exception of:
 
 1. **baseURL** = The final value should be your domain name. If you deploy to Netlify, you have to include the name of the site from Netlify.
-2. **pygmentsStyle** = The defaul value is "bw", but for this theme in dark mode, will have a bad color scheme in the code section, as will display white background with gray fonts. So not really legible. I did change it to "monokai" and it looks better.
+2. **pygmentsStyle** = The defaul value is "bw", but the contrast is pretty bad in dark mode. I did change it to "monokai" and it looks better.
 
+For list of available pygmentsStyle go to https://help.farbox.com/pygments.html
 
-
-### Create the Pages
+### Create the Pages and Write a Blog Post
 
 To create a page, execute the following command (example about page):
 ```bash
@@ -159,14 +195,17 @@ To create a post, you execute the following command:
 ```bash
 hugo new posts/post.md
 ```
+The pages will be stored in the content folder and the posts in the content/posts folder.
 
-## Initialize Git repository {#item-6}
+Now you need some Markdown syntax knowledge to edit your content. I would recommend to visit https://www.markdownguide.org/.
+
+## Initialize Git repository {#item-7}
 
 ```bash
 cd ivanhernandez.dev
 git init
 ```
-And get the following weird message:
+And get the following messages:
 ```bash
 hint: Using 'master' as the name for the initial branch. This default branch name
 hint: is subject to change. To configure the initial branch name to use in all
@@ -182,10 +221,11 @@ Initialized empty Git repository in /Users/ivan/Documents/2.Projects/ivanhernand
 ```
 
 
-## Create GitHub repository {#item-7}
+## Create GitHub repository {#item-8}
 
 - Create an empty repository in GitHub: https://github.com/new
 
+Once created, you push all the files from your website to host it in GitHub:
 ```bash
 git add .
 git remote add origin https://github.com/da-ivancho/ivanhernandez.dev.git
@@ -193,6 +233,13 @@ git branch -M main
 git push -u origin main
 ```
 
+## Netlify
+
+### Create an account
+
+### Create a new site
+
+### Change site name
 
 
 
